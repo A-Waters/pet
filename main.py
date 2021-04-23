@@ -9,8 +9,8 @@ def main():
     Arduino = ac.Ardiono('/dev/ttyACM0')
 
     while True:
-        Arduino.write_to(mypet.get_state())
-        time.sleep(1)
+        Arduino.LCD_print("01234567")
+        time.sleep(2)
 
 
    
