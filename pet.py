@@ -33,7 +33,7 @@ class pet:
         self.internal_clock.add_job(self.Anger, 11, args=(17,))
         self.internal_clock.add_job(self.Become_lonely, 6, args=(30,))
         self.internal_clock.add_job(self.tiered_out, 9, args=(18,))
-        self.internal_clock.add_job(self.show_stats, 20, args=())
+        self.internal_clock.add_job(self.show_stats, 1, args=())
         self.internal_clock.run()
         
     def show_stats(self):

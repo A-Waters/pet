@@ -13,8 +13,9 @@ def main():
             Arduino.LCD_print(mypet.get_state())
         else:
             Arduino.LCD_clear()
-        
+
         time.sleep(10)
+        print(mypet.get_state())
 
 
    
