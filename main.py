@@ -6,10 +6,10 @@ import arduino_connetor as ac
 
 def main():
     mypet = pet.pet("Danny")
-    Arduino = ac.Ardiono('/dev/ttyACM0')
+    Arduino = ac.arduino('/dev/ttyACM0')
 
     while True:
-        Arduino.write_to(mypet.get_state())
+        Arduino.write_to("01234567")
         time.sleep(1)
 
 

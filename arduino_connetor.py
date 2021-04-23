@@ -1,7 +1,7 @@
 import time
 import serial
 
-class Ardiono():
+class arduino:
     def __inti__(self, Port='', speed=9600):
         self.SerialConnection = serial.Serial('/dev/ttyACM0',9600)
         time.sleep(2)
