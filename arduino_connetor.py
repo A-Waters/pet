@@ -13,14 +13,14 @@ class arduino():
         return self.SerialConnection.readline().decode()
 
     def LCD_print(self, string):
-        if (len(string) < 8 ):
-            self.write_to("LDC-1|"+string)
-        elif (len(string) < 16):
-            self.write_to("LDC-1"+string[:8])
-            self.write_to("LDC-2"+string[8:16])
-
-        else:
+        if (len(string) > 16):
             raise Exception("String To Large for LCD: '" + string + "'")
+        elif (len(string) < 8 ):
+            self.write_to("LCD-1"+string)
+        else:
+            self.write_to("LCD-1"+string[:8])
+            self.write_to("LCD-2"+string[8:])
 
+        
 
     
