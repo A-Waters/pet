@@ -9,7 +9,7 @@ class arduino():
     def write_to(self, string):
         self.SerialConnection.write((string + '|').encode())
 
-    def readline_from(self, string):
+    def readline_from(self):
         return self.SerialConnection.readline().decode()
 
     def LCD_print(self, string):
