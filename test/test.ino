@@ -10,18 +10,19 @@ void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
   lcd.begin(16, 2);
+  
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-
+  String data; 
   
   while(Serial.available())
   {
-    data = Serial.read();
+    data = Serial.readString();
     data.substring(0,4);
 
-    lcd.print(data.subtring(4));
+    lcd.print(data.substring(4));
   }
   
   

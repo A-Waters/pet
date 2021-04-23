@@ -9,8 +9,9 @@ def main():
     Arduino = ac.arduino('/dev/ttyACM0')
 
     while True:
-        Arduino.write_to("01234567")
-        time.sleep(1)
+        data = input()
+        Arduino.LCD_print(data)
+        time.sleep(2)
 
 
    
