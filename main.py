@@ -12,7 +12,7 @@ def main():
     while True:
         data = Arduino.readline_from()
         print("waiting on you babe")
-        
+
         if data == "feelgood":
             mypet.anger = 100
             mypet.hunger = 100
@@ -22,12 +22,12 @@ def main():
 
         if mypet.get_state() != "":
             Arduino.LCD_print(mypet.get_state())
-            Arduino.write_to("Triggered")
+            Arduino.write_to("State:Triggered")
             last_state = mypet.get_state()
         else:
             Arduino.LCD_clear()
             if last_state != "":
-                Arduino.write_to("NotTriggered")
+                Arduino.write_to("State:NotTriggered")
                 last_state=""
         
         time.sleep(1)

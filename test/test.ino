@@ -6,17 +6,18 @@ LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 
 char delimiter = '|';
 String data;
+int buzzerpin = 10
 
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
+  pinMode(10,OUTPUT);
   lcd.begin(16, 2);
-  
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
- 
+  
   
   while(Serial.available())
   {
@@ -33,6 +34,17 @@ void loop() {
     { 
       lcd.setCursor(0,1);
       lcd.print(data.substring(5));
+    }
+  
+
+    else if (data.startsWith("State:"))
+    { 
+      if (data.substring(5) == "Triggered"){
+        tone(buzzerpin,200);
+      }
+      else {
+        noTone(buzzerpin)
+      }
     }
   }
 }
