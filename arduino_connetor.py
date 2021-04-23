@@ -7,7 +7,7 @@ class arduino():
         time.sleep(2)
 
     def write_to(self, string):
-        self.SerialConnection.write(string.encode())
+        self.SerialConnection.write((string + '|').encode())
 
     def readline_from(self, string):
         return self.SerialConnection.readline().decode()
