@@ -20,9 +20,18 @@ void loop() {
   while(Serial.available())
   {
     data = Serial.readString();
-    data.substring(0,4);
-
-    lcd.print(data.substring(4));
+     lcd.print(data);
+    if (data.startsWith("LCD-1"))
+    {
+      lcd.setCursor(0,0);
+      lcd.print(data.substring(5));
+    }
+    
+    else if (data.startsWith("LCD-2"))
+    { 
+      lcd.setCursor(0,1);
+      Serial.print(data.substring(5));
+    }
   }
   
   
