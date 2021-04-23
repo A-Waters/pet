@@ -9,9 +9,12 @@ def main():
     Arduino = ac.arduino('/dev/ttyACM0')
 
     while True:
-        data = input()
-        Arduino.LCD_print(data)
-        time.sleep(2)
+        if mypet.get_state() != "":
+            Arduino.LCD_print(mypet.get_state())
+        else:
+            Arduino.LCD_clear()
+        
+        time.sleep(10)
 
 
    

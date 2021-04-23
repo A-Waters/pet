@@ -20,6 +20,11 @@ class arduino():
         else:
             self.write_to("LCD-1"+string[:16])
             self.write_to("LCD-2"+string[16:])
+    
+    def LCD_clear(self):
+        self.write_to("LCD-1")
+        self.write_to("LCD-2")
+
 
         
 

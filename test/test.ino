@@ -31,14 +31,8 @@ void loop() {
     
     else if (data.startsWith("LCD-2"))
     { 
-      Serial.println("WE ARE HERE");
       lcd.setCursor(0,1);
       lcd.print(data.substring(5));
     }
-
-
   }
-  
-  
-
 }
