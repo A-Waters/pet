@@ -133,15 +133,15 @@ class pet:
     def get_state(self):
         curr_state = ""
         if self.isHungry(self.hunger_threshold):
-            curr_state += self.hunger_state
+            curr_state += self.hunger_state + " "
         
         if self.isAnrgy(self.anger_threshold):
-            curr_state += self.anger_state
+            curr_state += self.anger_state + " "
 
         if self.isLonely(self.attention_threshold):
-            curr_state += self.attention_state
+            curr_state += self.attention_state + " "
 
         if self.isTiered(self.tiered_threshold):
-            curr_state += self.tiered_state
+            curr_state += self.tiered_state + " "
         
         return curr_state
