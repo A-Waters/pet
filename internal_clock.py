@@ -18,24 +18,28 @@ class internal_clock:
     
     def loop_job(self, delay, function, args=()):
         ''' used to loop the functions while adding delays inbetween '''
-        time.sleep(delay)
-        if self.running == True:
-            
-            if args != ():
-                function(args)
-            else:
-                function()
-            
-            self.loop_job(delay, function, args)
+        while self.running:
+            time.sleep(delay)
+            if self.running == True:
+                
+                if args != ():
+                    function(args)
+                else:
+                    function()
+                
+                self.loop_job(delay, function, args)
 
     def run(self):
         ''' run all the functions that were added with add func '''
         if self.running == False:
+            
+            self.running = True
+
             for job in self.Live_jobs:
                 job.daemon = True
                 job.start()
             
-            self.running = True
+            
         
         else:
             raise Exception('Internal Clock Already Running, Need to Call End() to run more jobs')

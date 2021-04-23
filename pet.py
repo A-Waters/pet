@@ -29,11 +29,11 @@ class pet:
 
         self.name = name
 
-        self.internal_clock.add_job(self.lower_Hunger, 30, args=(1,))
-        self.internal_clock.add_job(self.Anger, 50, args=(1,))
-        self.internal_clock.add_job(self.Become_lonely, 20, args=(1,))
-        self.internal_clock.add_job(self.tiered_out, 60, args=(1,))
-        self.internal_clock.add_job(self.show_stats, 60, args=())
+        self.internal_clock.add_job(self.lower_Hunger, 5, args=(10,))
+        self.internal_clock.add_job(self.Anger, 11, args=(17,))
+        self.internal_clock.add_job(self.Become_lonely, 6, args=(30,))
+        self.internal_clock.add_job(self.tiered_out, 9, args=(18,))
+        self.internal_clock.add_job(self.show_stats, 20, args=())
         self.internal_clock.run()
         
     def show_stats(self):
@@ -49,18 +49,26 @@ class pet:
     def lower_Hunger(self, x):
         if self.hunger - x > 0:
             self.hunger -= x
+        else:
+            self.hunger = 0
         
     def Anger(self, x):
         if self.anger - x > 0:
             self.anger -= x
+        else:
+            self.anger = 0
 
     def Become_lonely(self,x ):
         if self.attention - x > 0:
             self.attention -= x
+        else:
+            self.attention = 0
 
     def tiered_out(self, x):
         if self.tiereness - x > 0:
             self.tiereness -= x
+        else:
+            self.tiereness = 0
 
 
 
