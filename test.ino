@@ -10,25 +10,20 @@ void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
   lcd.begin(16, 2);
-  lcd.print("First line");
-  lcd.setCursor(0,1);
-  lcd.print("Second line");
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
 
-  /*
+  
   while(Serial.available())
   {
     data = Serial.read();
-    Serial.print(data);
-    if (data == '1')
-      digitalWrite(LED,HIGH);
-    else
-      digitalWrite(LED,LOW);
+    data.substring(0,4);
+
+    lcd.print(data.subtring(4));
   }
-  */
+  
   
 
 }
