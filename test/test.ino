@@ -21,7 +21,6 @@ void loop() {
   {
     data = Serial.readString();
     data.substring(0,4);
-
     lcd.print(data.substring(4));
   }
   
