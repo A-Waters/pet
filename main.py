@@ -9,9 +9,12 @@ def main():
     mypet = pet.pet("Danny")
     Arduino = ac.arduino('/dev/ttyACM0')
 
-    threading.Thread(target=start_sending, args=(mypet, Arduino)).start().join()
-    threading.Thread(target=start_reciving, args=(mypet, Arduino)).start().join()
-
+    t1 = threading.Thread(target=start_sending, args=(Arduino, mypet))
+    t2 = threading.Thread(target=start_reciving, args=(Arduino, mypet))
+    t1.start()
+    t2.start()
+    t1.join()
+    t2.join()
 
 
 
@@ -25,7 +28,8 @@ def start_reciving(Arduino, mypet):
             mypet.hunger = 100
             mypet.tiereness = 100
             mypet.attention = 100
-
+            print("EPIC")
+        print("LOOP")
 
 def start_sending(Arduino, mypet):
     last_state = ""
