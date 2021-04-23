@@ -2,16 +2,23 @@ import pet
 import time
 import serial
 import arduino_connetor as ac
+import threading
 
 
 def main():
     mypet = pet.pet("Danny")
     Arduino = ac.arduino('/dev/ttyACM0')
 
-    last_state = ""
-    while True:
+    threading.Thread(target=start_sending, args=(mypet, Arduino)).start().join()
+    threading.Thread(target=start_reciving, args=(mypet, Arduino)).start().join()
+
+
+
+
+
+def start_reciving(Arduino, mypet):
+    while True: 
         data = Arduino.readline_from()
-        print("waiting on you babe")
 
         if data == "feelgood":
             mypet.anger = 100
@@ -19,6 +26,10 @@ def main():
             mypet.tiereness = 100
             mypet.attention = 100
 
+
+def start_sending(Arduino, mypet):
+    last_state = ""
+    while True:
 
         if mypet.get_state() != "":
             Arduino.LCD_print(mypet.get_state())
@@ -31,9 +42,7 @@ def main():
                 last_state=""
         
         time.sleep(1)
-
-
-   
+        print(mypet.get_state())
 
 
 if __name__ == "__main__":

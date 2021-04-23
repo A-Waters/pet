@@ -1,4 +1,4 @@
-`#include <LiquidCrystal.h>
+#include <LiquidCrystal.h>
 #include <string.h>
 
 const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
@@ -6,9 +6,9 @@ LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 
 char delimiter = '|';
 String data;
-int buzzerpin = 10
-int buttonpin = 7
-int buttonState = 0
+int buzzerpin = 10;
+int buttonpin = 7;
+int buttonState = 0;
 
 void setup() {
   // put your setup code here, to run once:
@@ -23,7 +23,7 @@ void loop() {
   
   while(Serial.available())
   {
-    buttonState = digitalRead(buttonpin)
+    buttonState = digitalRead(buttonpin);
     data = Serial.readStringUntil(delimiter);
     
     if (data.startsWith("LCD-1"))
@@ -41,11 +41,13 @@ void loop() {
 
     else if (data.startsWith("State:"))
     { 
-      if (data.substring(5) == "Triggered"){
+      if (data.substring(5) == "Triggered")
+      {
         tone(buzzerpin,200);
       }
-      else {
-        noTone(buzzerpin)
+      else 
+      {
+        noTone(buzzerpin);
       }
     }
 
