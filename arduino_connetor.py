@@ -1,16 +1,23 @@
 import time
 import serial
+import threading
 
 class arduino():
     def __init__(self, port='', speed=9600):
         self.SerialConnection = serial.Serial('/dev/ttyACM0',9600)
+        self.lock = threading.Lock()
         time.sleep(2)
 
     def write_to(self, string):
+        self.lock.acquire()
         self.SerialConnection.write((string + '|').encode())
+        self.lock.release()
 
     def readline_from(self):
-        return self.SerialConnection.readline().decode()
+        self.lock.acquire()
+        data = self.SerialConnection.readline().decode()
+        self.lock.release()
+        return data
 
     def LCD_print(self, string):
         if (len(string) >= 32):
