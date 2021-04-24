@@ -10,13 +10,17 @@ class arduino():
 
     def write_to(self, string):
         self.lock.acquire()
+        print("inside write")
         self.SerialConnection.write((string + '|').encode())
         self.lock.release()
+        print("outside write")
 
     def readline_from(self):
         self.lock.acquire()
+        print("inside read")
         data = self.SerialConnection.readline().decode()
         self.lock.release()
+        print("outside read")
         return data
 
     def LCD_print(self, string):
