@@ -47,7 +47,7 @@ def start_sending(Arduino, mypet):
 
         
         time.sleep(1)
-        print(last_state)
+        
 
 
 if __name__ == "__main__":
