@@ -17,6 +17,7 @@ class arduino():
     def readline_from(self):
         self.lock.acquire()
         data = self.SerialConnection.read_until(b'\n').decode()
+        print("Data", data)
         self.lock.release()
         return data
 

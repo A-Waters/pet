@@ -29,7 +29,7 @@ def start_reciving(Arduino, mypet):
             mypet.tiereness = 100
             mypet.attention = 100
             print("feelgood")
-            print("From reciving", mypet.get_state())
+        print("From reciving", mypet.get_state())
 
 def start_sending(Arduino, mypet):
     last_state = ""

@@ -21,13 +21,12 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   
-  delay(500);
-  Serial.println(Serial.available()); 
-  while(Serial.available())
+  while(true)
   {
-    Serial.println("-");
+    
 
     buttonState = digitalRead(buttonpin);
+    Serial.println(buttonState);
       
     data = Serial.readStringUntil(delimiter);
     
