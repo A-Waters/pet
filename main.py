@@ -30,21 +30,21 @@ def start_reciving(Arduino, mypet):
 
 
 def start_sending(Arduino, mypet):
-    last_state = ""
-    while True:
+    current_state = ""
 
-        if mypet.get_state() != "":
-            Arduino.LCD_print(mypet.get_state())
-            Arduino.write_to("State:Triggered")
-            last_state = mypet.get_state()
+    while True:
+        if current_state != mypet.get_state():
             
-        else:
-            print("clearing screen")
-            Arduino.LCD_clear()
-            if last_state != "":
-                print("we made it")
-                Arduino.write_to("State:NotTriggered")
-                last_state=""
+            if mypet.get_state() != "":
+                Arduino.write_to("State:Triggered")
+                Arduino.LCD_print(mypet.get_state())
+
+            else:
+                Arduino.write_to("State:Not")
+                Arduino.LCD_clear()
+            
+            current_state = mypet.get_state()
+
         
         time.sleep(1)
         print(last_state)
