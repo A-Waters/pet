@@ -13,18 +13,20 @@ int buttonState = 0;
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
+  pinMode(buttonpin,INPUT);
   pinMode(buzzerpin,OUTPUT);
-  lcd.begin(buttonpin, 2);
+  lcd.begin(16, 2);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  
-  
+
+
   while(Serial.available())
   {
-    buttonState = digitalRead(buttonpin);
+    buttonState = digitalRead(buttonpin);  
     data = Serial.readStringUntil(delimiter);
+
     
     if (data.startsWith("LCD-1"))
     {
@@ -41,7 +43,7 @@ void loop() {
 
     else if (data.startsWith("State:"))
     { 
-      if (data.substring(5) == "Triggered")
+      if (data.substring(6) == "Triggered")
       {
         tone(buzzerpin,200);
       }
@@ -52,10 +54,11 @@ void loop() {
     }
 
 
-
-  if (buttonState == HIGH){
-    Serial.print("feelgood");
-  }
+      
+    if (buttonState == LOW)
+    {
+      Serial.println("feelgood");
+    }
     
   }
 }
