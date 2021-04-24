@@ -17,7 +17,6 @@ class arduino():
     def readline_from(self):
         self.lock.acquire()
         data = self.SerialConnection.read_until(b'\n').decode()
-        print("Data", data)
         self.lock.release()
         return data
 
@@ -31,8 +30,8 @@ class arduino():
             self.write_to("LCD-2"+string[16:])
     
     def LCD_clear(self):
-        self.write_to("LCD-1")
-        self.write_to("LCD-2")
+        self.write_to("LCD-1                  ")
+        self.write_to("LCD-2                  ")
 
 
         

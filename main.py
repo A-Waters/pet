@@ -34,12 +34,16 @@ def start_sending(Arduino, mypet):
 
     while True:
         if current_state != mypet.get_state():
+            print("updatin state")
+            print(mypet.get_state())
             
             if mypet.get_state() != "":
+                print("triggered")
                 Arduino.write_to("State:Triggered")
                 Arduino.LCD_print(mypet.get_state())
 
             else:
+                print("not")
                 Arduino.write_to("State:Not")
                 Arduino.LCD_clear()
             

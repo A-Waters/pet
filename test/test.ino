@@ -57,8 +57,6 @@ void loop() {
       }
     }
 
-
-      
     if (buttonState == LOW)
     {
       Serial.println("feelgood");
