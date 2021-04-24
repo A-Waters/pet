@@ -1,7 +1,8 @@
-import sched, time, internal_clock
+import sched, time, internal_clock, threading
 
 class pet:
     def __init__(self, name):
+        self.lock = threading.Lock()
         self.state = "Happy"
         self.alive = True
         
@@ -30,9 +31,9 @@ class pet:
         self.name = name
 
         self.internal_clock.add_job(self.lower_Hunger, 5, args=(10,))
-        self.internal_clock.add_job(self.Anger, 11, args=(17,))
-        self.internal_clock.add_job(self.Become_lonely, 6, args=(30,))
-        self.internal_clock.add_job(self.tiered_out, 9, args=(18,))
+        self.internal_clock.add_job(self.lower_Anger, 11, args=(17,))
+        self.internal_clock.add_job(self.lower_lonelyness, 6, args=(30,))
+        self.internal_clock.add_job(self.lower_tierdeness, 9, args=(18,))
         # self.internal_clock.add_job(self.show_stats, 1, args=())
         self.internal_clock.run()
         
@@ -44,31 +45,54 @@ class pet:
         print('Tieredness: {}/{}'.format(self.tiereness, self.max_tiereness))
 
 
+    def set_Hunger(self,x):
+        self.lock.acquire()
+        self.hunger = x
+        self.lock.release()
+
+
+    def set_Anger(self,x):
+        self.lock.acquire()
+        self.anger = x
+        self.lock.release()
+
+
+    def set_Lonelyness(self,x):
+        self.lock.acquire()
+        self.Lonelyness = x
+        self.lock.release()
+
+
+    def set_Tieredness(self,x):
+        self.lock.acquire()
+        self.Tieredness = x
+        self.lock.release()
+    
     # Life is rough
 
     def lower_Hunger(self, x):
         if self.hunger - x > 0:
-            self.hunger -= x
+            self.set_Hunger(self.hunger - x)
         else:
-            self.hunger = 0
+            self.set_Hunger(0)
         
-    def Anger(self, x):
+    def lower_Anger(self, x):
         if self.anger - x > 0:
-            self.anger -= x
+            self.set_Anger(self.anger - x)
         else:
-            self.anger = 0
+            self.set_Anger(0)
 
-    def Become_lonely(self,x ):
+    def lower_lonelyness(self, x):
         if self.attention - x > 0:
-            self.attention -= x
+            self.set_Lonelyness(self.attention - x)
         else:
-            self.attention = 0
+            self.set_Lonelyness(0)
 
-    def tiered_out(self, x):
+    def lower_tierdeness(self, x):
         if self.tiereness - x > 0:
-            self.tiereness -= x
+            self.set_Tieredness(self.tiereness - x)
         else:
-            self.tiereness = 0
+            self.set_Tieredness(0)
 
 
 
@@ -76,19 +100,19 @@ class pet:
 
     def raise_Hunger(self,x):
         if self.hunger + x < self.max_hunger:
-           self.hunger += x
+           self.set_Hunger(self.hunger + x)
 
     def calm(self,x):
         if self.anger + x < self.max_anger:
-           self.anger += x
+           self.set_Anger(self.anger + x)
     
     def give_attention(self,x):
         if self.attention + x < self.max_attention:
-           self.attention += x
+           self.set_Lonelyness(self.attention + x)
     
     def rest(self,x):
         if self.tiereness + x < self.max_tiereness:
-           self.tiereness += x
+           self.set_Tieredness(self.tiereness + x)
     
 
 
