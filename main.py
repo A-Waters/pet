@@ -29,7 +29,7 @@ def start_reciving(Arduino, mypet):
             mypet.tiereness = 100
             mypet.attention = 100
             print("EPIC")
-        print("LOOP")
+        print("LOOP:", data)
 
 def start_sending(Arduino, mypet):
     last_state = ""
