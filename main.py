@@ -22,17 +22,11 @@ def main():
 def start_reciving(Arduino, mypet):
     while True: 
         data = Arduino.readline_from().rstrip()
-        print('\n')
-        print("||"+data+"||")
-        print(type (data))
-        print("matching:", data == "feelgood")
         if data == "feelgood":
             mypet.set_Anger(100)
             mypet.set_Hunger(100)
             mypet.set_Lonelyness(100)
             mypet.set_Tieredness(100)
-            print("feelgood")
-    print("From reciving", mypet.get_state())
 
 def start_sending(Arduino, mypet):
     last_state = ""
@@ -41,13 +35,10 @@ def start_sending(Arduino, mypet):
         if mypet.get_state() != "":
             Arduino.LCD_print(mypet.get_state())
             Arduino.write_to("State:Triggered")
-            print("From Sending", mypet.get_state())
             last_state = mypet.get_state()
         else:
             Arduino.LCD_clear()
             if last_state != "":
-                print("Not TRIGGERD")
-                print("From Sending", mypet.get_state())
                 Arduino.write_to("State:NotTriggered")
                 last_state=""
         
