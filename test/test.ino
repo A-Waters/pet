@@ -20,12 +20,17 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-
-
+  
+  delay(500);
+  Serial.println(Serial.available()); 
   while(Serial.available())
   {
-    buttonState = digitalRead(buttonpin);  
+    Serial.println("-");
+
+    buttonState = digitalRead(buttonpin);
+      
     data = Serial.readStringUntil(delimiter);
+    
 
     
     if (data.startsWith("LCD-1"))
@@ -59,6 +64,5 @@ void loop() {
     {
       Serial.println("feelgood");
     }
-    
   }
 }
