@@ -28,6 +28,7 @@ def start_reciving(Arduino, mypet):
             mypet.set_Lonelyness(100)
             mypet.set_Tieredness(100)
 
+
 def start_sending(Arduino, mypet):
     last_state = ""
     while True:
@@ -38,8 +39,10 @@ def start_sending(Arduino, mypet):
             last_state = mypet.get_state()
             
         else:
+            print("clearing screen")
             Arduino.LCD_clear()
             if last_state != "":
+                print("we made it")
                 Arduino.write_to("State:NotTriggered")
                 last_state=""
         
