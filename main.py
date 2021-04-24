@@ -22,14 +22,14 @@ def main():
 def start_reciving(Arduino, mypet):
     while True: 
         data = Arduino.readline_from()
-
+        print("matching:", data == "feelgood")
         if data == "feelgood":
-            mypet.anger = 100
-            mypet.hunger = 100
-            mypet.tiereness = 100
-            mypet.attention = 100
+            mypet.set_Anger(100)
+            mypet.set_Hunger(100)
+            mypet.set_Lonelyness(100)
+            mypet.set_Tieredness(100)
             print("feelgood")
-            print("From reciving", mypet.get_state())
+    print("From reciving", mypet.get_state())
 
 def start_sending(Arduino, mypet):
     last_state = ""
