@@ -36,6 +36,7 @@ def start_sending(Arduino, mypet):
             Arduino.LCD_print(mypet.get_state())
             Arduino.write_to("State:Triggered")
             last_state = mypet.get_state()
+            
         else:
             Arduino.LCD_clear()
             if last_state != "":
@@ -43,6 +44,7 @@ def start_sending(Arduino, mypet):
                 last_state=""
         
         time.sleep(1)
+        print(last_state)
 
 
 if __name__ == "__main__":
